@@ -30,6 +30,9 @@ header .sub{font-size:12.5px;color:var(--mute);white-space:nowrap}
 .btn.sm{padding:3px 9px;font-size:13px;font-weight:600}
 main{flex:1;display:grid;grid-template-columns:390px minmax(0,1fr);min-height:0;position:relative}
 #side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:#fff;z-index:1000}
+body.side-off main{grid-template-columns:minmax(0,1fr)}
+body.side-off #side{display:none}
+.btn.ghost[aria-expanded="true"]{background:var(--selbg)}
 .grip{display:none}
 .tabs{display:flex;border-bottom:1px solid var(--line);background:#fff}
 .tabs button{flex:1;border:0;background:none;padding:9px 6px;font-weight:600;color:var(--ink2);cursor:pointer;border-bottom:3px solid transparent}
@@ -120,6 +123,40 @@ main{flex:1;display:grid;grid-template-columns:390px minmax(0,1fr);min-height:0;
 .lbl span{display:inline-block;transform:translate(-50%,-50%);white-space:nowrap;font-size:12.5px;font-weight:700;color:#7a0010;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 2px #fff,0 0 1px #fff;pointer-events:none}
 .lbl.k2 span{color:#7a0a3c}
 .lbl.k4 span,.lbl.k3 span{color:#0a2a7a}
+.lmk{background:none;border:0}
+.lmk .pin{position:absolute;left:-11px;top:-30px;width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#e8740c;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.lmk .pin::after{content:'';position:absolute;left:6px;top:6px;width:6px;height:6px;border-radius:50%;background:#fff}
+.lmk .t{position:absolute;left:14px;top:-27px;white-space:nowrap;font-size:12.5px;font-weight:700;color:#7a3a00;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 2px #fff}
+.ctlbtn.t3d{font-weight:800;font-size:12.5px;color:var(--navy);letter-spacing:-.3px}
+#tour3d{position:absolute;inset:0;z-index:1200;background:#cfd8e3}
+#tour3d .gl{position:absolute;inset:0}
+#tour3d .bar{position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:2}
+#tour3d .bar button{border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:8px;padding:5px 12px;font-weight:600;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+#tour3d .bar button.pri{background:var(--navy);color:#fff}
+#tour3d .cap{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;background:rgba(255,255,255,.95);border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.3);padding:10px 16px 12px;min-width:240px;max-width:calc(100% - 32px);text-align:center;transition:opacity .35s}
+#tour3d .cap.off{opacity:0}
+#tour3d .cap .n{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+#tour3d .cap .n b{color:var(--navy)}
+.tourpop .maplibregl-popup-content{padding:12px 14px 12px;border-radius:10px;box-shadow:0 3px 14px rgba(0,0,0,.3);font-size:13px;line-height:1.6;color:var(--ink)}
+.tourpop h4{margin:0;font-size:16px;color:var(--navy)}
+.tourpop .ad{font-size:12px;color:var(--mute);margin:1px 0 6px}
+.tourpop p{margin:0 0 8px}
+.tourpop .nh{font-size:12px;font-weight:700;color:var(--ink2);border-top:1px solid var(--line);padding-top:6px;margin-bottom:2px}
+.tourpop ul{list-style:none;margin:0;padding:0;font-size:12.5px}
+.tourpop li{display:flex;align-items:center;gap:6px}
+.tourpop li i{flex:none;width:14px;height:3px;border-radius:2px}
+.tourpop li small{margin-left:auto;color:var(--mute);font-variant-numeric:tabular-nums;padding-left:8px}
+.tourpop .ob{display:block;width:100%;margin-top:9px;border:1px solid #7a4a12;background:#fff;color:#7a4a12;border-radius:7px;padding:5px 10px;font-size:12.5px;font-weight:700;cursor:pointer}
+.tourpop .ob:hover{background:#fbf3e8}
+.tourpop .ob[aria-pressed="true"]{background:#7a4a12;color:#fff}
+.tourpop.maplibregl-popup{animation:tpIn .35s ease-out}
+@keyframes tpIn{from{opacity:0;transform:translateY(6px)}}
+@media (prefers-reduced-motion:reduce){.tourpop.maplibregl-popup{animation:none}}
+#tour3d .cap .pg{height:3px;background:var(--line);border-radius:2px;margin-top:8px;overflow:hidden}
+#tour3d .cap .pg i{display:block;height:100%;width:0;background:#e8740c}
+#tour3d .lmk{width:0;height:0}
+@media (max-width:820px){ #tour3d .cap{bottom:calc(var(--sheet-px,0px) + 16px)} }
+.lg .pinlg{display:inline-block;width:11px;height:11px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#e8740c;margin:0 4px 0 3px}
 .pop h4{margin:0 0 2px;font-size:14.5px;color:var(--navy)}
 .pop .m{font-size:12.5px;color:var(--mute)}
 .pop .d{font-size:13px;margin:4px 0}
@@ -168,13 +205,13 @@ main{flex:1;display:grid;grid-template-columns:390px minmax(0,1fr);min-height:0;
 @media print{body{background:#fff}#side,header{display:none}}
 </style>
 </head>
-<body class="s-mid">
+<body class="s-mid side-off">
 <header>
   <h1>【台農院】大臺北瑠公圳水系圖</h1>
   <span class="sub">瑠公圳、霧裡薛圳與周邊水圳 × 古地圖套疊</span>
   <span class="sp"></span>
-  <button class="btn ghost sm" id="bHelp" type="button">說明</button>
-  <button class="btn sm" id="bShare" type="button" title="複製目前畫面（位置、古地圖、透明度）的連結">分享<span class="hide-m">畫面</span></button>
+  <button class="btn ghost sm" id="bSide" type="button" aria-controls="side" aria-expanded="false" aria-label="水圳／古地圖選單" title="顯示或隱藏水圳清單與古地圖選單">☰<span class="hide-m"> 水圳／古地圖</span></button>
+  <button class="btn ghost sm" id="bTour" type="button" title="以 3D 飛行依序巡覽地標" hidden>▶ 巡覽</button>
 </header>
 <main>
   <div id="side">
@@ -238,6 +275,7 @@ main{flex:1;display:grid;grid-template-columns:390px minmax(0,1fr);min-height:0;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="data/canals.js"></script>
 <script src="data/layers.js"></script>
+<script src="data/landmarks.js"></script>
 <script>
 (function(){
 'use strict';
@@ -262,7 +300,7 @@ const CATS = [
   {k:'自然水系', label:'自然水系', color:'#1414F0', cls:'k4'}
 ];
 const CAT = Object.fromEntries(CATS.map(c=>[c.k,c]));
-const catOn = Object.fromEntries(CATS.map(c=>[c.k,true]));
+const catOn = Object.fromEntries(CATS.map(c=>[c.k,false]));   // 預設全部關閉，由使用者勾選開啟
 const FOLDER_ORDER = ['瑠公圳、霧裡薛圳主線','原瑠公圳段給水路、池埤','原霧裡薛圳段給水路、池埤','新店、中和、永和','台北市區溪流溝渠'];
 
 /* ---------- 地圖 ---------- */
@@ -307,7 +345,7 @@ feats.forEach(f=>{
 });
 function lenKm(coords){ let s=0; for(let i=1;i<coords.length;i++){ s+=L.latLng(coords[i-1][1],coords[i-1][0]).distanceTo(L.latLng(coords[i][1],coords[i][0])); } return s/1000; }
 const canalLayer = L.featureGroup().addTo(map);
-const layerOfCat = Object.fromEntries(CATS.map(c=>[c.k, L.featureGroup().addTo(canalLayer)]));
+const layerOfCat = Object.fromEntries(CATS.map(c=>{ const g=L.featureGroup(); if(catOn[c.k]) g.addTo(canalLayer); return [c.k, g]; }));
 feats.forEach(f=>{
   const p=f.properties, g=f.geometry, it=byKey.get(p.folder+'|'+p.name);
   let lyr;
@@ -326,7 +364,7 @@ feats.forEach(f=>{
   lyr.addTo(layerOfCat[p.cat] || canalLayer);
 });
 items.forEach(it=>{ it.bounds=L.featureGroup(it.layers).getBounds(); });
-const allBounds = canalLayer.getBounds();
+const allBounds = items.reduce((b,it)=>it.bounds.isValid()?b.extend(it.bounds):b, L.latLngBounds([]));
 
 // 圳名標註（主要圳路，z≥15）
 const labelLayer = L.layerGroup();
@@ -350,6 +388,7 @@ let curIt = null;
 function sheetPad(){
   if(!isMobile()) return {paddingTopLeft:[30,30], paddingBottomRight:[30,30]};
   const b=document.body.classList, vh=window.innerHeight;
+  if(b.contains('side-off')) return {paddingTopLeft:[24,24], paddingBottomRight:[24,24]};   // 面板隱藏時不必預留底部空間
   const h = b.contains('s-min') ? 100 : b.contains('s-max') ? vh*0.86 : vh*0.46;
   return {paddingTopLeft:[24,24], paddingBottomRight:[24, Math.round(Math.min(h, vh*0.6))+24]};
 }
@@ -400,7 +439,7 @@ function renderDetail(it){
     '<span>中心點</span><span>'+fmtLL(ctr)+'</span></div>'+
     (it.desc?'<div class="desc">'+esc(it.desc)+'</div>':'')+
     '<div class="acts"><button class="btn sm ghost" type="button" data-act="zoom">移到此處</button><a class="btn sm ghost" href="'+gmapLink(ctr)+'" target="_blank" rel="noopener" style="text-decoration:none">Google 地圖</a><button class="btn sm ghost" type="button" data-copy="'+fmtLL(ctr)+'">複製座標</button><button class="btn sm" type="button" data-act="share">分享此圳</button></div>';
-  d.hidden=false; document.body.classList.add('has-detail');
+  d.hidden=false; document.body.classList.add('has-detail'); showSide(true);
   d.querySelector('.x').onclick=clearSel;
   d.querySelector('[data-act=zoom]').onclick=()=>select(it);
   d.querySelector('[data-act=share]').onclick=()=>share(it.name);
@@ -426,7 +465,7 @@ function renderList(){
   const vis=items.filter(it=>catOn[it.cat] && (!terms.length || terms.every(t=>norm(it.name+' '+it.desc+' '+it.folder+' '+it.cat).includes(t))));
   $('#nCanal').textContent=vis.length;
   const box=$('#list');
-  if(!vis.length){ box.innerHTML='<div class="nodata">找不到符合的水圳。<br>可改用較短的關鍵字，或確認上方類別已勾選。</div>'; return; }
+  if(!vis.length){ box.innerHTML='<div class="nodata">'+(CATS.some(c=>catOn[c.k]) ? '找不到符合的水圳。<br>可改用較短的關鍵字，或確認上方類別已勾選。' : '水圳圖層目前皆未開啟。<br>請勾選上方類別（如「瑠公水圳」）以顯示水圳與清單。')+'</div>'; return; }
   const groups=FOLDER_ORDER.concat([...new Set(items.map(i=>i.folder))].filter(f=>!FOLDER_ORDER.includes(f)));
   let html='';
   groups.forEach(g=>{
@@ -569,13 +608,192 @@ function syncLegend(){
   d.innerHTML='<div class="hd" data-tg>圖例<span style="font-weight:400;color:var(--mute);font-size:12px">'+(d.classList.contains('min')?'展開 ▴':'收合 ▾')+'</span></div><div class="bd">'+
     CATS.map(c=>'<label class="r"><input type="checkbox" data-lc="'+c.k+'"'+(catOn[c.k]?' checked':'')+'><i style="border-color:'+c.color+'"></i>'+c.label+'</label>').join('')+
     '<div class="s"><i class="d" style="border-color:#888;width:20px;display:inline-block;border-top-width:3px;vertical-align:middle;margin-right:6px"></i>原始路線（改線前）</div>'+
-    '<label class="r s"><input type="checkbox" id="lblOn"'+(labelsOn?' checked':'')+'>主要圳名標註（放大後顯示）</label></div>';
+    '<label class="r s"><input type="checkbox" id="lblOn"'+(labelsOn?' checked':'')+'>主要圳名標註（放大後顯示）</label>'+
+    '<label class="r"><input type="checkbox" id="lmkOn"'+(lmkOn?' checked':'')+'><span class="pinlg"></span>地標</label></div>';
   d.querySelector('[data-tg]').onclick=()=>{ d.classList.toggle('min'); syncLegend(); };
   d.querySelectorAll('[data-lc]').forEach(i=>i.onchange=()=>setCat(i.dataset.lc, i.checked));
   const lb=d.querySelector('#lblOn'); if(lb) lb.onchange=()=>{ labelsOn=lb.checked; store.set('liugong.labels', labelsOn?'1':'0'); syncLabels(); };
+  const lm=d.querySelector('#lmkOn'); if(lm) lm.onchange=()=>{ lmkOn=lm.checked; store.set('liugong.lmk', lmkOn?'1':'0'); syncLmk(); };
 }
 
-baseCtl.addTo(map); locCtl.addTo(map); legendCtl.addTo(map);
+/* ---------- 地標 ---------- */
+let lmkOn = store.get('liugong.lmk')!=='0';
+const lmkLayer = L.layerGroup();
+(window.LANDMARKS||[]).forEach(p=>{
+  const ll=L.latLng(p.lat,p.lng);
+  L.marker(ll, {pane:'labels', title:p.name, icon:L.divIcon({className:'lmk', html:'<span class="pin"></span><span class="t">'+esc(p.name)+'</span>', iconSize:[0,0]})})
+    .bindPopup('<div class="pop"><h4>'+esc(p.name)+'</h4><div class="m">地標</div>'+(p.addr?'<div class="d">'+esc(p.addr)+'</div>':'')+'<div class="c">'+fmtLL(ll)+'</div><div class="a"><a href="'+gmapLink(ll)+'" target="_blank" rel="noopener">Google 地圖</a><button type="button" data-copy="'+fmtLL(ll)+'">複製座標</button></div></div>', {offset:[0,-24]})
+    .addTo(lmkLayer);
+});
+function syncLmk(){ if(lmkOn) lmkLayer.addTo(map); else map.removeLayer(lmkLayer); }
+syncLmk();
+
+/* ---------- 3D 巡覽（MapLibre GL，按下才載入） ---------- */
+const TOUR = (window.LANDMARKS||[]).filter(p=>p.tour).sort((a,b)=>a.tour-b.tour);
+const TOUR_STAY = 5000;            // 每點停留毫秒
+const TOUR_OLD = 'liugong_1939';   // 巡覽視窗按鈕疊加的古地圖（layers.js 的 id）
+const MLV = '4.7.1', MLB = 'https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/'+MLV+'/';
+let mlReady = null, tour = null;
+function loadML(){
+  if(mlReady) return mlReady;
+  mlReady = new Promise((ok, no)=>{
+    const css=document.createElement('link'); css.rel='stylesheet'; css.href=MLB+'maplibre-gl.min.css'; document.head.appendChild(css);
+    const s=document.createElement('script'); s.src=MLB+'maplibre-gl.min.js'; s.onload=()=>ok(window.maplibregl); s.onerror=()=>{ mlReady=null; no(new Error('load')); }; document.head.appendChild(s);
+  });
+  return mlReady;
+}
+function canalGeoJSON(){
+  return {type:'FeatureCollection', features:feats.filter(f=>f.geometry && catOn[f.properties.cat]!==false && f.geometry.type!=='Point')};
+}
+function bearingTo(a, b){
+  const r=Math.PI/180, y=Math.sin((b.lng-a.lng)*r)*Math.cos(b.lat*r),
+        x=Math.cos(a.lat*r)*Math.sin(b.lat*r)-Math.sin(a.lat*r)*Math.cos(b.lat*r)*Math.cos((b.lng-a.lng)*r);
+  return (Math.atan2(y,x)/r+360)%360;
+}
+// 依地圖水圳資料，找出距離點位 r 公尺內最近的 n 條（同名合併）
+function nearCanals(p, r=400, n=3){
+  const kx=Math.cos(p.lat*Math.PI/180)*111320, ky=110540, best=new Map();
+  const segD=(a,b)=>{ const ax=(a[0]-p.lng)*kx, ay=(a[1]-p.lat)*ky, dx=(b[0]-a[0])*kx, dy=(b[1]-a[1])*ky, L=dx*dx+dy*dy;
+    const t=L ? Math.max(0, Math.min(1, -(ax*dx+ay*dy)/L)) : 0; return Math.hypot(ax+t*dx, ay+t*dy); };
+  feats.forEach(f=>{
+    const g=f.geometry, pr=f.properties; if(!g) return;
+    const cs = g.type==='LineString' ? g.coordinates : g.type==='Polygon' ? g.coordinates[0] : g.type==='Point' ? [g.coordinates, g.coordinates] : null;
+    if(!cs || cs.length<2) return;
+    let d=Infinity; for(let i=0;i<cs.length-1;i++) d=Math.min(d, segD(cs[i], cs[i+1]));
+    if(d<=r && (!best.has(pr.name) || d<best.get(pr.name).d)) best.set(pr.name, {name:pr.name, color:pr.color, d});
+  });
+  return [...best.values()].sort((a,b)=>a.d-b.d).slice(0,n);
+}
+const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+async function startTour(){
+  if(tour || !TOUR.length) return;
+  toast('載入 3D 地圖中…');
+  let ml; try{ ml = await loadML(); }catch(e){ toast('3D 地圖元件載入失敗，請確認網路連線'); return; }
+  const gltest=document.createElement('canvas'); if(!(gltest.getContext('webgl2')||gltest.getContext('webgl'))){ toast('此瀏覽器不支援 WebGL，無法使用 3D 巡覽'); return; }
+
+  const box=document.createElement('div'); box.id='tour3d';
+  box.innerHTML='<div class="gl"></div><div class="bar"><button type="button" data-a="replay" hidden>重新巡覽</button><button type="button" class="pri" data-a="close">結束巡覽（Esc）</button></div>'+
+    '<div class="cap off" aria-live="polite"><div class="n"></div><div class="pg"><i></i></div></div>';
+  $('#map').appendChild(box);
+  L.DomEvent.disableClickPropagation(box); L.DomEvent.disableScrollPropagation(box);
+
+  const baseUrl = NLSC(baseKey==='photo' ? 'PHOTO2' : baseKey==='gray' ? 'EMAP01' : 'EMAP');
+  const c0 = map.getCenter();
+  const gl = new ml.Map({
+    container: box.querySelector('.gl'),
+    center:[c0.lng, c0.lat], zoom:Math.max(map.getZoom()-1, 10), pitch:0, bearing:0, maxPitch:75,
+    attributionControl:{compact:true},
+    style:{version:8,
+      sources:{
+        base:{type:'raster', tiles:[baseUrl], tileSize:256, maxzoom:19, attribution:'國土測繪中心'},
+        dem:{type:'raster-dem', tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'], encoding:'terrarium', tileSize:256, maxzoom:14, attribution:'Terrain Tiles (AWS / Mapzen)'},
+        hs:{type:'raster-dem', tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'], encoding:'terrarium', tileSize:256, maxzoom:14},
+        canal:{type:'geojson', data:canalGeoJSON()}
+      },
+      layers:[
+        {id:'base', type:'raster', source:'base'},
+        {id:'hill', type:'hillshade', source:'hs', paint:{'hillshade-exaggeration':.35, 'hillshade-shadow-color':'#3a4250'}},
+        {id:'canal-fill', type:'fill', source:'canal', filter:['==',['geometry-type'],'Polygon'], paint:{'fill-color':['get','color'], 'fill-opacity':.25}},
+        {id:'canal', type:'line', source:'canal', filter:['==',['geometry-type'],'LineString'], layout:{'line-cap':'round','line-join':'round'},
+         paint:{'line-color':['get','color'], 'line-width':['interpolate',['linear'],['zoom'],11,1.5,16,4,18,7], 'line-opacity':.95}}
+      ],
+      terrain:{source:'dem', exaggeration:1},
+      sky:{'sky-color':'#9ec5e8','horizon-color':'#e6eef6','fog-color':'#e6eef6','sky-horizon-blend':.6,'horizon-fog-blend':.5,'fog-ground-blend':.4}
+    }
+  });
+  gl.addControl(new ml.NavigationControl({visualizePitch:true}), 'top-left');
+  TOUR.forEach(p=>{
+    const el=document.createElement('div'); el.className='lmk'; el.innerHTML='<span class="pin"></span><span class="t">'+esc(p.name)+'</span>';
+    new ml.Marker({element:el, anchor:'top-left'}).setLngLat([p.lng,p.lat]).addTo(gl);
+  });
+
+  const t = tour = {gl, box, run:0, timers:[], oldOn: !!(ov && ov.id===TOUR_OLD)};
+  syncTourBtn();
+  const oldDef = oldById[TOUR_OLD];
+  function setOld(on){
+    t.oldOn = on;
+    if(!oldDef || !gl.isStyleLoaded()) return syncOldBtn();
+    if(on && !gl.getSource('old')){
+      gl.addSource('old', {type:'raster', tiles:[oldDef.u], tileSize:256, minzoom:oldDef.mn||0, maxzoom:oldDef.mx,
+        bounds:[oldDef.b[1], oldDef.b[0], oldDef.b[3], oldDef.b[2]], attribution:attFor(oldDef)});
+      gl.addLayer({id:'old', type:'raster', source:'old', paint:{'raster-opacity': ovOpacity<0.15 ? 0.75 : ovOpacity, 'raster-fade-duration':300}}, 'canal-fill');
+    }
+    if(gl.getLayer('old')) gl.setLayoutProperty('old', 'visibility', on ? 'visible' : 'none');
+    syncOldBtn();
+    if(on) toast('已疊加「'+oldDef.t+'」');
+  }
+  function oldBtnHtml(){ return oldDef ? '<button type="button" class="ob" data-a="old" aria-pressed="'+t.oldOn+'">'+(t.oldOn ? '移除 ' : '疊加 ')+esc(oldDef.t)+'</button>' : ''; }
+  function syncOldBtn(){ document.querySelectorAll('.tourpop [data-a="old"]').forEach(b=>{ b.outerHTML=oldBtnHtml(); }); }
+  box.addEventListener('click', e=>{ if(e.target.closest('[data-a="old"]')) setOld(!t.oldOn); });
+  const cap=box.querySelector('.cap'), bar=box.querySelector('.pg i');
+  const alive = id => tour===t && t.run===id;
+  const wait = ms => new Promise(r=>{ t.timers.push(setTimeout(r, ms)); });
+  const pop = new ml.Popup({closeButton:false, closeOnClick:false, closeOnMove:false, anchor:'bottom', offset:[0,-34], maxWidth:'320px', className:'tourpop'});
+  function popHtml(p){
+    const near = nearCanals(p);
+    return '<h4>'+esc(p.name)+'</h4>'+(p.addr?'<div class="ad">'+esc(p.addr)+'</div>':'')+(p.info?'<p>'+esc(p.info)+'</p>':'')+
+      (near.length ? '<div class="nh">附近水圳（地圖資料）</div><ul>'+near.map(n=>'<li><i style="background:'+n.color+'"></i>'+esc(n.name)+'<small>約 '+(Math.round(n.d/10)*10||10)+' 公尺</small></li>').join('')+'</ul>' : '')+oldBtnHtml();
+  }
+  function hideCap(){ cap.classList.add('off'); pop.remove(); }
+  function showCap(i, p){
+    const nx = TOUR[i+1];
+    cap.querySelector('.n').innerHTML='<b>'+(i+1)+' / '+TOUR.length+'</b>　'+(nx ? '下一站：'+esc(nx.name) : '最後一站');
+    pop.setLngLat([p.lng,p.lat]).setHTML(popHtml(p)).addTo(gl);
+    bar.style.transition='none'; bar.style.width='0';
+    cap.classList.remove('off');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{ bar.style.transition='width '+TOUR_STAY+'ms linear'; bar.style.width='100%'; }));
+  }
+
+  async function play(){
+    const id = ++t.run; const rm = reduceMotion();
+    box.querySelector('[data-a="replay"]').hidden=true;
+    let prev = gl.getCenter();
+    for(let i=0;i<TOUR.length;i++){
+      if(!alive(id)) return;
+      const p=TOUR[i], to={lng:p.lng, lat:p.lat};
+      let brg = bearingTo(prev, to); if(brg>180) brg-=360;
+      brg = Math.max(-45, Math.min(45, brg>90 ? 180-brg : brg<-90 ? -180-brg : brg));   // 朝前進方向，但不讓地圖文字倒過來
+      hideCap();
+      const opt = {center:[p.lng,p.lat], zoom:16.6, pitch:62, bearing:brg};
+      const dur = i===0 ? 5000 : 6500;
+      if(rm) gl.jumpTo(opt); else { gl.flyTo({...opt, duration:dur, curve:1.6, essential:true}); await wait(dur+150); }
+      if(!alive(id)) return;
+      showCap(i, p);
+      if(!rm) gl.easeTo({bearing:brg+25, duration:TOUR_STAY, easing:x=>x});   // 停留時緩慢環繞
+      await wait(TOUR_STAY);
+      prev = to;
+    }
+    if(!alive(id)) return;
+    hideCap();
+    const b=new ml.LngLatBounds(); TOUR.forEach(p=>b.extend([p.lng,p.lat]));
+    gl.fitBounds(b, {padding:90, pitch:50, bearing:-20, duration:rm?0:4000, essential:true});
+    box.querySelector('[data-a="replay"]').hidden=false;
+  }
+  box.querySelector('[data-a="close"]').onclick=endTour;
+  box.querySelector('[data-a="replay"]').onclick=()=>{ t.timers.forEach(clearTimeout); t.timers=[]; hideCap(); play(); };
+  gl.on('load', ()=>{ if(tour!==t) return; if(t.oldOn) setOld(true); play(); });
+}
+function syncTourBtn(){ const b=$('#bTour'); if(!b) return; b.innerHTML = tour ? '■<span class="hide-m"> 結束巡覽</span>' : '▶ 巡覽'; b.setAttribute('aria-pressed', String(!!tour)); }
+function endTour(){
+  if(!tour) return;
+  const t=tour; tour=null; t.run++; t.timers.forEach(clearTimeout); syncTourBtn();
+  const c=t.gl.getCenter(), z=t.gl.getZoom();
+  t.gl.remove(); t.box.remove();
+  map.setView([c.lat, c.lng], Math.round(Math.min(z+.5, 18)), {animate:false});
+  if(t.oldOn && !(ov && ov.id===TOUR_OLD)) setOverlay(TOUR_OLD);          // 3D 中疊加的古地圖帶回 2D
+  else if(!t.oldOn && ov && ov.id===TOUR_OLD) setOverlay(null);
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && tour) endTour(); });
+
+const TourCtl = L.Control.extend({options:{position:'topright'}, onAdd(){
+  const d=L.DomUtil.create('div','mapbox'); L.DomEvent.disableClickPropagation(d);
+  d.innerHTML='<button class="ctlbtn t3d" type="button" title="3D 飛行巡覽地標" aria-label="3D 飛行巡覽地標">3D</button>';
+  d.firstChild.onclick=startTour; return d; }});
+const tourCtl = new TourCtl();
+
+baseCtl.addTo(map); locCtl.addTo(map); if(TOUR.length) tourCtl.addTo(map); legendCtl.addTo(map);
+if(TOUR.length){ $('#bTour').hidden=false; $('#bTour').onclick=()=>{ if(tour){ endTour(); return; } if(isMobile()) showSide(false); startTour(); }; }
 
 /* 點空白處：顯示座標 */
 map.on('click', e=>{
@@ -589,6 +807,12 @@ function setTab(t){
   if(t==='old'){ renderOld(); renderCurOv(); }
 }
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{ if(isMobile() && document.body.classList.contains('has-detail')){ $('#detail').hidden=true; document.body.classList.remove('has-detail'); } setTab(b.dataset.tab); if(isMobile() && document.body.classList.contains('s-min')) setSheet('mid'); });
+function showSide(on){
+  const b=document.body.classList; if(b.contains('side-off')!==on) return;   // 狀態不變
+  b.toggle('side-off', !on); $('#bSide').setAttribute('aria-expanded', String(on));
+  syncSheetPx(); map.invalidateSize();
+}
+$('#bSide').onclick=()=>showSide(document.body.classList.contains('side-off'));
 function setSheet(s){
   document.body.classList.remove('s-min','s-mid','s-max'); document.body.classList.add('s-'+s);
   setTimeout(syncSheetPx, 240);
@@ -626,7 +850,6 @@ function share(canalName){
   if(navigator.share && isMobile()){ navigator.share({title, url}).catch(()=>{}); }
   else copy(url, '已複製連結，可貼給同事');
 }
-$('#bShare').onclick=()=>share();
 function readHash(){
   const p=new URLSearchParams(location.hash.slice(1)); hashLock=true;
   const ll=(p.get('ll')||'').split(',').map(Number), z=+p.get('z');
@@ -634,7 +857,7 @@ function readHash(){
   if(p.get('op')!=null) ovOpacity=Math.max(0,Math.min(1,(+p.get('op'))/100));
   if(p.get('o') && oldById[p.get('o')]) setOverlay(p.get('o'));
   let selected=false;
-  if(p.get('c')){ const it=items.find(i=>i.name===p.get('c')); if(it){ select(it, {fly:!(ll.length===2&&z)}); selected=true; } }
+  if(p.get('c')){ const it=items.find(i=>i.name===p.get('c')); if(it){ if(!catOn[it.cat]) setCat(it.cat, true); select(it, {fly:!(ll.length===2&&z)}); selected=true; } }
   if(ll.length===2 && isFinite(ll[0]) && isFinite(ll[1]) && z) map.setView(ll, z);
   else if(!selected) map.fitBounds(allBounds, sheetPad());
   hashLock=false; updateHash();
@@ -642,7 +865,6 @@ function readHash(){
 
 /* ---------- 說明 ---------- */
 function openIntro(){ $('#intro').hidden=false; }
-$('#bHelp').onclick=openIntro;
 $('#intro').addEventListener('click', e=>{ if(e.target.id==='intro' || e.target.closest('[data-close]')){ $('#intro').hidden=true; store.set('liugong.intro','1'); } });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') $('#intro').hidden=true; });
 
