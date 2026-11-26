@@ -210,7 +210,7 @@ body.side-off #side{display:none}
   <h1>【台農院】大臺北瑠公圳水系圖</h1>
   <span class="sub">瑠公圳、霧裡薛圳與周邊水圳 × 古地圖套疊</span>
   <span class="sp"></span>
-  <button class="btn ghost sm" id="bSide" type="button" aria-controls="side" aria-expanded="false" aria-label="水圳／古地圖選單" title="顯示或隱藏水圳清單與古地圖選單">☰<span class="hide-m"> 水圳／古地圖</span></button>
+  <button class="btn ghost sm" id="bSide" type="button" hidden aria-controls="side" aria-expanded="false" aria-label="水圳／古地圖選單" title="顯示或隱藏水圳清單與古地圖選單">☰<span class="hide-m"> 水圳／古地圖</span></button>
   <button class="btn ghost sm" id="bTour" type="button" title="以 3D 飛行依序巡覽地標" hidden>▶ 巡覽</button>
 </header>
 <main>
@@ -421,7 +421,8 @@ function select(it, opt){
   }
   updateHash();
 }
-function clearSel(){ curIt=null; haloLayer.clearLayers(); $('#detail').hidden=true; document.body.classList.remove('has-detail'); document.querySelectorAll('#list .row.cur').forEach(r=>r.classList.remove('cur')); updateHash(); }
+function clearSel(){ curIt=null; haloLayer.clearLayers(); $('#detail').hidden=true; document.body.classList.remove('has-detail'); if($('#bSide').hidden) showSide(false);   // 選單鈕隱藏時，選單只隨水圳詳細資料出現
+  document.querySelectorAll('#list .row.cur').forEach(r=>r.classList.remove('cur')); updateHash(); }
 function popHtml(it, ll){
   const c=CAT[it.cat]||{};
   return '<div class="pop"><h4>'+esc(it.name)+'</h4><div class="m"><b style="color:'+c.color+'">'+esc(it.cat)+'</b>・'+esc(it.folder)+'</div>'+
